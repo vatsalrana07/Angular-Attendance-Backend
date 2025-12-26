@@ -11,7 +11,7 @@ const port = process.env.PORT || 4000;
 let db;
 app.use(
   cors({
-    origin: ["http://localhost:4200"],
+    origin: ["http://localhost:4200", "https://angular-attendance.vercel.app"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
