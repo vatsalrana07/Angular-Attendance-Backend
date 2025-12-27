@@ -74,3 +74,22 @@ app.delete("/api/delete/:id", async (req, res) => {
     console.log("Error:", error);
   }
 });
+
+app.put("/api/update/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { name, attendance } = req.body;
+    const collection = db.collection("studentinfo");
+    const result = await collection.updateOne(
+      { _id: new ObjectId(id) },
+      { $set: { name, attendance } }
+    );
+    if (result.matchedCount > 0) {
+      res.json({ message: "Updated Successfully" });
+    } else {
+      res.json({ message: "Student Not Found!" });
+    }
+  } catch (error) {
+    console.log("Error: ", error);
+  }
+});
